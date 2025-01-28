@@ -8,6 +8,7 @@ __author__ = 'Yeray Otero Mato'
 from utils import is_dict
 from pokemons import tipos
 from random import randint
+from time import sleep
 
 # Debilidades. El tipo Normal no es debil ni fuerte contro nada
 debilidades = {
@@ -80,13 +81,24 @@ def comprobacion_ataques(ataque, pokemon_atacante):
     else:
         return False
 
-def mostrar_tras_ataque(pokemon_atacado, danho):
+def mostrar_tras_ataque(pokemon_atacado, daho, pokemon_atacando):
     if pokemon_atacado.get("vitalidad_actual") <= 0:
-        print(f"\nSe ha inflingido un daño total de {danho} a {pokemon_atacado.get("nombre")}.\n\n{pokemon_atacado.get("nombre")} ha caído debilitado!")
+        sleep(2)
+        print(f"\nSe ha inflingido un daño total de {daho:.2f} a {pokemon_atacado.get("nombre")}.")
+        sleep(7)
+        print(f"\n{pokemon_atacado.get("nombre")} ha caído debilitado!")
+        sleep(3)
+        print(f"\n{pokemon_atacando.get("nombre")} ha ganado el combate!")
         return True
-    elif danho:
-        print(f"\nSe ha inflingido un daño total de {danho} a {pokemon_atacado.get("nombre")}.\nSu vitalidad restante es de {pokemon_atacado.get("vitalidad_actual")} puntos de vida.")
+    elif daho:
+        sleep(2)
+        print(f"\nSe ha inflingido un daño total de {daho:.2f} a {pokemon_atacado.get("nombre")}.")
+        sleep(2)
+        print(f"Su vitalidad restante es de {pokemon_atacado.get("vitalidad_actual"):.2f} puntos de vida.")
+        sleep(3)
         return True
     else:
+        sleep(2)
         print("\nEl ataque ha fallado!")
+        sleep(2)
         return True
